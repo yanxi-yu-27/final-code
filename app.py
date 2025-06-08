@@ -36,6 +36,13 @@ if not data:
     st.info("아직 등록된 민원이 없습니다.")
 else:
     df = pd.DataFrame(data)
+    # ✅ latitude, longitude가 float 타입으로 변환되어야 pydeck에서 작동
+    try:
+        df["latitude"] = df["latitude"].astype(float)
+        df["longitude"] = df["longitude"].astype(float)
+    except Exception as e:
+        st.error("지도 좌표 변환 실패: " + str(e))
+
 
     # 지도 위에 민원 표시
     st.subheader("🗺️ 민원 지도")
