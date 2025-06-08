@@ -3,3 +3,4 @@ gspread
 pandas
 pydeck
 google-auth
+streamlit_folium
